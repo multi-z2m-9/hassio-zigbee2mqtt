@@ -1,0 +1,21 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every day @ 00:00
+  workflow_dispatch: # on button click
+
+jobs:
+  sync:
+    permissions:
+      contents: write
+      pull-requests: write
+      
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: zwping/fork-sync@v1.6.5
+        with:
+          owner: zigbee2mqtt
+          base: master
+          head: master
